@@ -37,7 +37,7 @@
 					pageList: [30,50,100],
 					pagination : true,
 					toolbar : toolbar,
-					url : "../../data/standard.json",
+					url : "../../standard_pageQuery",
 					idField : 'id',
 					columns : columns
 				});
@@ -56,7 +56,18 @@
 				text : '修改',
 				iconCls : 'icon-edit',
 				handler : function(){
-					alert('修改');
+					var rows = $("#grid").datagrid('getSelections');
+					
+					//判断
+					if(rows.length!=1){
+						//弹出警告
+						$.messager.alert("ERROR","只能修改一条数据","warning")
+					}else{
+						//数据回显
+						$("#myform").form('load',rows[0]);
+						//打开窗口显示数据进行操作
+						$("#standardWindow").window('open')
+					}
 				}
 			},{
 				id : 'button-delete',
@@ -136,7 +147,7 @@
 
 			<div region="center" style="overflow:auto;padding:5px;" border="false">
 				
-				<form id="myform" action="../../standard_save" method="post">
+				<form id="myform" action="../../standard_save.action" method="post">
 					<table class="table-edit" width="80%" align="center">
 						<tr class="title">
 							<td colspan="2">收派标准信息
