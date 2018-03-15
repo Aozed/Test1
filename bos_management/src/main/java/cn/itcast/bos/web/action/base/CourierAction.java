@@ -125,16 +125,16 @@ public class CourierAction extends ActionSupport implements ModelDriven<Courier>
 		return SUCCESS;
 	}
 	
-	private String id;
+	private String idds;
 
-	public void setId(String id) {
-		this.id = id;
+	public void setidds(String idds) {
+		this.idds = idds;
 	}
 	
 	@Action(value="courier_delete",results={@Result(name = "success", type = "redirect", location = "./pages/base/courier.html")})
 	public String delete(){
-		String[] ids = id.split(",");
-		courierService.delete(ids);
+		String[] iddss = idds.split(",");
+		courierService.delete(iddss);
 		return SUCCESS;
 	}
 }

@@ -117,12 +117,24 @@
 			    });
 			    
 			    //一键上传
-			   var myUpload = $(element).upload({ 
+			   var myUpload = $("#button-import").upload({ 
 				        action: '../../area_upload', 
 				        onComplete: function() {
-				        	alert("上传成功")
+				        	alert("上传成功");
 				        },
-				        onSelect: function() {} 
+				        onSelect: function() {
+				        	//获取上传文件名
+				        	var name = this.filename();
+				        	
+				        	//正则表达式
+				        	var regex = /^.*\.(xls|xlsx)$/;
+				        	
+				        	if(regex.test(name)){
+				        		this.submit();
+				        	}else(
+				        		$.messager.alert("error","请选择xls或xlsx的类型文件","warning")
+				        	)
+				        }
 				}); 
 				
 			});
