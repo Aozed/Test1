@@ -55,6 +55,7 @@ public class CourierAction extends ActionSupport implements ModelDriven<Courier>
 
 	@Action(value = "courier_save", results = {
 			@Result(name = "success", type = "redirect", location = "./pages/base/courier.html") })
+	//添加快递员
 	public String save() {
 		courierService.save(courier);
 		return SUCCESS;
@@ -77,6 +78,10 @@ public class CourierAction extends ActionSupport implements ModelDriven<Courier>
 	}
 
 	@Action(value = "courier_pageQuery", results = { @Result(name = "success", type = "json") })
+	/**
+	 * 分页查询
+	 * @return
+	 */
 	public String pageQuery() {
 		// 创建pageable对象
 		Pageable pageable = new PageRequest(page-1, rows);
@@ -117,6 +122,19 @@ public class CourierAction extends ActionSupport implements ModelDriven<Courier>
 		
 		//存入值栈,使用push方法
 		ActionContext.getContext().getValueStack().push(map);
+		return SUCCESS;
+	}
+	
+	private String id;
+
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+	@Action(value="courier_delete",results={@Result(name = "success", type = "redirect", location = "./pages/base/courier.html")})
+	public String delete(){
+		String[] ids = id.split(",");
+		courierService.delete(ids);
 		return SUCCESS;
 	}
 }

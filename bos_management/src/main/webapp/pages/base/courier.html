@@ -44,7 +44,23 @@
 			}
 			
 			function doDelete(){
-				alert("删除...");
+				//获取选中行
+				var rows = $("#grid").datagrid('getSelections');
+				
+				//创建数组
+				var array = new Array();
+				
+				if (rows.length==0) {
+					$.messager.alert("error","请至少选中一条数据","warning");
+				} else{
+					for (var i=0;i<rows.length;i++) {
+						array.push(rows[i].id);
+					}
+					
+					var ids = array.join(",");
+					
+					window.location.href= "../../courier_delete?id="+ids;
+				}
 			}
 			
 			function doRestore(){

@@ -31,4 +31,12 @@ public class CourierServiceImpl implements CourierService{
 	public Page<Courier> findAllPage(Specification specification,Pageable pageable) {
 		return courierDao.findAll(specification, pageable);
 	}
+
+	@Override
+	public void delete(String[] ids) {
+		for (String idStr : ids) {
+			int id = Integer.parseInt(idStr);
+			courierDao.update(id);
+		}
+	}
 }

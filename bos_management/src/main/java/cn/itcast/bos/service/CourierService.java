@@ -17,4 +17,6 @@ public interface CourierService {
 
 	Page<Courier> findAllPage(Specification<Courier> specification, Pageable pageable);
 
+	void delete(String[] ids);
+
 }
