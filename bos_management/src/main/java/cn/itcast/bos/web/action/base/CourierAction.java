@@ -38,10 +38,10 @@ import cn.itcast.bos.service.CourierService;
  * @author Administrator
  *
  */
-@Namespace("/")
-@ParentPackage("json-default")
 @Controller
 @Scope("prototype")
+@Namespace("/")
+@ParentPackage("json-default")
 public class CourierAction extends ActionSupport implements ModelDriven<Courier> {
 
 	private Courier courier = new Courier();
@@ -127,7 +127,7 @@ public class CourierAction extends ActionSupport implements ModelDriven<Courier>
 	
 	private String idds;
 
-	public void setidds(String idds) {
+	public void setIdds(String idds) {
 		this.idds = idds;
 	}
 	
